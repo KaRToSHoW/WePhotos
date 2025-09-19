@@ -1,0 +1,8 @@
+@import "tailwindcss";
+
+.shadow-neon {
+  box-shadow: 0 0 10px #00f7ff, 0 0 20px #00b3ff;
+}
+.bg-indigoDark { background-color: #0f1b3a; }
+.text-neonCyan { color: #00f7ff; }
+::placeholder { color: #6ee7ff; }
