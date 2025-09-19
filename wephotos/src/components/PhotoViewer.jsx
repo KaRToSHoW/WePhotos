@@ -56,7 +56,7 @@ export default function PhotoViewer({ photo, isOpen, onClose, photos = [], curre
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         exit={{ opacity: 0 }}
-        className="fixed inset-0 z-50 flex items-center justify-center bg-black/90 backdrop-blur-sm"
+        className="fixed inset-0 z-50 flex items-center justify-center bg-gray-900"
         onClick={onClose}
       >
         <motion.div
@@ -99,7 +99,7 @@ export default function PhotoViewer({ photo, isOpen, onClose, photos = [], curre
           )}
 
           {/* Изображение */}
-          <div className="relative bg-gradient-to-br from-cyan-900/20 to-blue-900/20 rounded-2xl overflow-hidden border border-cyan-200/20">
+          <div className="relative bg-gray-800 rounded-2xl overflow-hidden border border-gray-600 shadow-2xl">
             <div className="relative">
               {isLoading && (
                 <div className="absolute inset-0 flex items-center justify-center bg-gray-900/50">
@@ -116,14 +116,15 @@ export default function PhotoViewer({ photo, isOpen, onClose, photos = [], curre
             </div>
 
             {/* Информация о фото */}
-            <div className="p-6 bg-gradient-to-t from-black/80 to-transparent">
+            <div className="p-6 bg-gray-800">
               <h3 className="text-2xl font-bold text-cyan-100 mb-2">
                 {currentPhoto.title || 'Без названия'}
               </h3>
               {currentPhoto.description && (
-                <p className="text-cyan-200/80 mb-4 leading-relaxed">
-                  {currentPhoto.description}
-                </p>
+                <div 
+                  className="text-cyan-200/80 mb-4 leading-relaxed prose prose-invert prose-sm max-w-none"
+                  dangerouslySetInnerHTML={{ __html: currentPhoto.description }}
+                />
               )}
               <div className="flex items-center justify-between text-sm text-cyan-300/60">
                 <span>

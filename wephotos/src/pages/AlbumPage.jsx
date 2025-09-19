@@ -217,26 +217,34 @@ export default function AlbumPage({ albumId }) {
           </div>
         </div>
         
-        <div className="flex items-center justify-between flex-wrap gap-3">
-          <div className="text-cyan-200/60">
+        <div className="flex items-center justify-between flex-wrap gap-4">
+          <div className="text-cyan-200/60 text-lg">
             {photos.length} {photos.length === 1 ? 'фотография' : 'фотографий'}
           </div>
-          <motion.button
-            whileHover={{ scale: 1.05 }}
-            whileTap={{ scale: 0.95 }}
-            onClick={() => navigate('/upload')}
-            className="px-6 py-3 bg-gradient-to-r from-cyan-500/20 to-blue-500/20 rounded-xl border border-cyan-200/20 hover:from-cyan-500/30 hover:to-blue-500/30 transition-all duration-300 text-cyan-200 hover:text-cyan-100"
-          >
-            Добавить фото
-          </motion.button>
-          <motion.button
-            whileHover={{ scale: 1.05 }}
-            whileTap={{ scale: 0.95 }}
-            onClick={openPicker}
-            className="px-6 py-3 bg-gradient-to-r from-purple-500/20 to-pink-500/20 rounded-xl border border-purple-200/20 hover:from-purple-500/30 hover:to-pink-500/30 transition-all duration-300 text-cyan-200 hover:text-cyan-100 ml-3"
-          >
-            Добавить из библиотеки
-          </motion.button>
+          <div className="flex gap-3">
+            <motion.button
+              whileHover={{ scale: 1.02, y: -1 }}
+              whileTap={{ scale: 0.98 }}
+              onClick={() => navigate('/upload')}
+              className="px-6 py-3 bg-gradient-to-r from-cyan-500/20 to-blue-500/20 rounded-xl border border-cyan-200/20 hover:from-cyan-500/30 hover:to-blue-500/30 transition-all duration-300 text-cyan-200 hover:text-cyan-100 flex items-center gap-2 shadow-lg hover:shadow-xl"
+            >
+              <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 6v6m0 0v6m0-6h6m-6 0H6" />
+              </svg>
+              Добавить фото
+            </motion.button>
+            <motion.button
+              whileHover={{ scale: 1.02, y: -1 }}
+              whileTap={{ scale: 0.98 }}
+              onClick={openPicker}
+              className="px-6 py-3 bg-gradient-to-r from-purple-500/20 to-pink-500/20 rounded-xl border border-purple-200/20 hover:from-purple-500/30 hover:to-pink-500/30 transition-all duration-300 text-cyan-200 hover:text-cyan-100 flex items-center gap-2 shadow-lg hover:shadow-xl"
+            >
+              <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10" />
+              </svg>
+              Из библиотеки
+            </motion.button>
+          </div>
         </div>
       </motion.div>
 

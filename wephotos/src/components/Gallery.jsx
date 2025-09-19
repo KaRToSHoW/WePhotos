@@ -10,7 +10,7 @@ export default function Gallery({ photos = [], onOpen, onPhotoUpdate, onPhotoDel
       {photos.map((photo, idx) => (
         <motion.div
           key={photo.id}
-          whileHover={{ y: -2 }}
+          whileHover={{ y: -1 }}
           className="mb-4 break-inside-avoid rounded-xl overflow-hidden bg-gradient-to-br from-white/5 to-white/10 border border-cyan-200/10 shadow-md group cursor-pointer"
           onClick={() => onOpen?.(photo)}
           style={{
@@ -31,7 +31,7 @@ export default function Gallery({ photos = [], onOpen, onPhotoUpdate, onPhotoDel
               photo={photo}
               onUpdate={onPhotoUpdate}
               onDelete={onPhotoDelete}
-              className="absolute inset-0"
+              className="absolute top-2 right-2"
             />
 
             {(photo.title || photo.description) && (
@@ -40,7 +40,10 @@ export default function Gallery({ photos = [], onOpen, onPhotoUpdate, onPhotoDel
                   <div className="text-sm text-cyan-100 font-semibold truncate">{photo.title}</div>
                 )}
                 {photo.description && (
-                  <div className="text-xs text-cyan-200/70 truncate mt-1">{photo.description}</div>
+                  <div 
+                    className="text-xs text-cyan-200/70 truncate mt-1"
+                    dangerouslySetInnerHTML={{ __html: photo.description }}
+                  />
                 )}
               </div>
             )}

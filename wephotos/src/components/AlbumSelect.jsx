@@ -41,8 +41,8 @@ export default function AlbumSelect({ albums = [], value, onChange, placeholder 
     <div className={`relative ${className}`} ref={selectRef}>
       {/* Кнопка селекта */}
       <motion.button
-        whileHover={{ scale: 1.02 }}
-        whileTap={{ scale: 0.98 }}
+        whileHover={{ scale: 1.01 }}
+        whileTap={{ scale: 0.99 }}
         onClick={() => setIsOpen(!isOpen)}
         className="w-full p-4 rounded-xl bg-white/5 border border-cyan-200/20 text-left focus:border-cyan-400 focus:ring-2 focus:ring-cyan-400/20 transition-all duration-300 hover:bg-white/10"
       >
@@ -58,9 +58,10 @@ export default function AlbumSelect({ albums = [], value, onChange, placeholder 
                 {selectedAlbum ? selectedAlbum.title : placeholder}
               </div>
               {selectedAlbum && selectedAlbum.description && (
-                <div className="text-sm text-cyan-200/60 truncate max-w-48">
-                  {selectedAlbum.description}
-                </div>
+                <div 
+                  className="text-sm text-cyan-200/60 truncate max-w-48"
+                  dangerouslySetInnerHTML={{ __html: selectedAlbum.description }}
+                />
               )}
             </div>
           </div>
@@ -83,10 +84,10 @@ export default function AlbumSelect({ albums = [], value, onChange, placeholder 
             animate={{ opacity: 1, y: 0, scale: 1 }}
             exit={{ opacity: 0, y: -10, scale: 0.95 }}
             transition={{ duration: 0.2 }}
-            className="absolute top-full left-0 right-0 mt-2 bg-gradient-to-br from-white/10 to-white/5 backdrop-blur-sm rounded-2xl border border-cyan-200/20 shadow-2xl z-50 overflow-hidden"
+            className="absolute top-full left-0 right-0 mt-2 bg-gray-800 rounded-2xl border border-gray-600 shadow-2xl z-50 overflow-hidden"
           >
             {/* Поиск */}
-            <div className="p-3 border-b border-cyan-200/10">
+            <div className="p-3 border-b border-gray-600">
               <div className="relative">
                 <svg className="absolute left-3 top-1/2 transform -translate-y-1/2 w-4 h-4 text-cyan-200/60" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
@@ -147,9 +148,10 @@ export default function AlbumSelect({ albums = [], value, onChange, placeholder 
                     <div className="flex-1 min-w-0">
                       <div className="font-medium truncate">{album.title}</div>
                       {album.description && (
-                        <div className="text-sm text-cyan-200/60 truncate">
-                          {album.description}
-                        </div>
+                        <div 
+                          className="text-sm text-cyan-200/60 truncate"
+                          dangerouslySetInnerHTML={{ __html: album.description }}
+                        />
                       )}
                     </div>
                   </div>

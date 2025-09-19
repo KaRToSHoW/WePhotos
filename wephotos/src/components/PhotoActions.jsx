@@ -1,6 +1,7 @@
 import React, { useState } from 'react'
-import { motion, AnimatePresence } from 'framer-motion'
+import { AnimatePresence } from 'framer-motion'
 import { supabase } from '../supabaseClient'
+import RichTextEditor from './RichTextEditor'
 
 export default function PhotoActions({ photo, onUpdate, onDelete, className = "" }) {
   const [isEditing, setIsEditing] = useState(false)
@@ -62,18 +63,16 @@ export default function PhotoActions({ photo, onUpdate, onDelete, className = ""
   }
 
   return (
-    <div className={`relative group ${className}`}>
+    <div className={`relative ${className}`}>
       {/* Кнопка меню */}
-      <motion.button
-        whileHover={{ scale: 1.1 }}
-        whileTap={{ scale: 0.9 }}
+      <button
         onClick={() => setIsEditing(true)}
-        className="absolute top-2 right-2 p-2 rounded-full bg-black/50 hover:bg-black/70 transition-all duration-300 opacity-0 group-hover:opacity-100 z-10"
+        className="absolute top-2 right-2 p-2 rounded-full bg-black/70 hover:bg-black/90 transition-all duration-300 opacity-100 z-20"
       >
         <svg className="w-4 h-4 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
           <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 5v.01M12 12v.01M12 19v.01M12 6a1 1 0 110-2 1 1 0 010 2zm0 7a1 1 0 110-2 1 1 0 010 2zm0 7a1 1 0 110-2 1 1 0 010 2z" />
         </svg>
-      </motion.button>
+      </button>
 
       {/* Модальное окно редактирования */}
       <AnimatePresence>
@@ -82,14 +81,14 @@ export default function PhotoActions({ photo, onUpdate, onDelete, className = ""
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
-            className="fixed inset-0 z-50 flex items-center justify-center bg-black/50 backdrop-blur-sm"
+            className="fixed inset-0 z-50 flex items-center justify-center bg-gray-900"
             onClick={() => setIsEditing(false)}
           >
             <motion.div
               initial={{ scale: 0.8, opacity: 0 }}
               animate={{ scale: 1, opacity: 1 }}
               exit={{ scale: 0.8, opacity: 0 }}
-              className="bg-gradient-to-br from-white/10 to-white/5 backdrop-blur-sm rounded-2xl p-6 w-full max-w-md mx-4 border border-cyan-200/20"
+              className="bg-gray-800 rounded-2xl p-6 w-full max-w-md mx-4 border border-gray-600 shadow-2xl"
               onClick={(e) => e.stopPropagation()}
             >
               <h3 className="text-xl font-bold text-cyan-100 mb-4">Редактировать фото</h3>
@@ -108,11 +107,11 @@ export default function PhotoActions({ photo, onUpdate, onDelete, className = ""
                 
                 <div>
                   <label className="block text-sm text-cyan-200/70 mb-2">Описание</label>
-                  <textarea
+                  <RichTextEditor
                     value={editData.description}
-                    onChange={(e) => setEditData({ ...editData, description: e.target.value })}
-                    className="w-full p-3 rounded-xl bg-white/5 border border-cyan-200/20 text-cyan-100 placeholder-cyan-400 focus:border-cyan-400 focus:ring-2 focus:ring-cyan-400/20 transition-all resize-none h-24"
+                    onChange={(value) => setEditData({ ...editData, description: value })}
                     placeholder="Описание фото"
+                    className="min-h-[100px]"
                   />
                 </div>
               </div>
@@ -136,7 +135,7 @@ export default function PhotoActions({ photo, onUpdate, onDelete, className = ""
                 </motion.button>
               </div>
 
-              <div className="mt-4 pt-4 border-t border-cyan-200/20">
+              <div className="mt-4 pt-4 border-t border-gray-600">
                 <motion.button
                   whileHover={{ scale: 1.05 }}
                   whileTap={{ scale: 0.95 }}

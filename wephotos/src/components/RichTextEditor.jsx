@@ -20,15 +20,6 @@ export default function RichTextEditor({ value = '', onChange, placeholder = 'О
 
   return (
     <div className={className}>
-      <div className="flex items-center gap-2 mb-2 text-cyan-200/80">
-        <button type="button" onClick={() => exec('bold')} className="px-2 py-1 rounded bg-white/5 hover:bg-white/10">B</button>
-        <button type="button" onClick={() => exec('italic')} className="px-2 py-1 rounded bg-white/5 hover:bg-white/10 italic">I</button>
-        <button type="button" onClick={() => exec('underline')} className="px-2 py-1 rounded bg-white/5 hover:bg-white/10 underline">U</button>
-        <button type="button" onClick={() => exec('insertUnorderedList')} className="px-2 py-1 rounded bg-white/5 hover:bg-white/10">•</button>
-        <button type="button" onClick={() => exec('insertOrderedList')} className="px-2 py-1 rounded bg-white/5 hover:bg-white/10">1.</button>
-        <button type="button" onClick={() => exec('formatBlock', '<h4>')} className="px-2 py-1 rounded bg-white/5 hover:bg-white/10">H4</button>
-        <button type="button" onClick={() => exec('removeFormat')} className="px-2 py-1 rounded bg-white/5 hover:bg-white/10">CLR</button>
-      </div>
       <div
         ref={editorRef}
         contentEditable
